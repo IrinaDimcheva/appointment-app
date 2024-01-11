@@ -13,6 +13,20 @@ export class AppointmentListComponent {
   appointments: Appointment[] = [];
 
   addAppointment() {
-    alert(this.newAppointmentTitle + ' ' + this.newAppointmentDate);
+    if (!this.newAppointmentTitle.trim().length || !this.newAppointmentDate) {
+      return alert('All the fields are required');
+    }
+    const newAppointment: Appointment = {
+      id: Date.now(),
+      title: this.newAppointmentTitle,
+      date: this.newAppointmentDate,
+    };
+
+    this.appointments.push(newAppointment);
+
+    this.newAppointmentTitle = '';
+    this.newAppointmentDate = new Date();
+
+    alert(this.appointments.length);
   }
 }
